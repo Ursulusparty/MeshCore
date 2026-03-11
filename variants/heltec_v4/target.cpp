@@ -28,6 +28,14 @@ AutoDiscoverRTCClock rtc_clock(fallback_clock);
   MomentaryButton user_btn(PIN_USER_BTN, 1000, true);
 #endif
 
+#if ENV_INCLUDE_GPS
+  #include <helpers/sensors/MicroNMEALocationProvider.h>
+  MicroNMEALocationProvider nmea = MicroNMEALocationProvider(Serial1);
+  EnvironmentSensorManager sensors = EnvironmentSensorManager(nmea);
+#else
+  EnvironmentSensorManager sensors;
+#endif
+
 bool radio_init() {
   fallback_clock.begin();
   rtc_clock.begin(Wire);
