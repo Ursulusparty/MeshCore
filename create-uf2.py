@@ -4,7 +4,7 @@
 
 import os
 
-Import("env")
+import("env")
 
 firmware_hex = "${BUILD_DIR}/${PROGNAME}.hex"
 uf2_file = os.environ.get("UF2_FILE_PATH", "${BUILD_DIR}/${PROGNAME}.uf2")
